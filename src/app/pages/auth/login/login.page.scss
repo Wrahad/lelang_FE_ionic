@@ -1,0 +1,205 @@
+/* Layout */
+.login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 40px 24px;
+  /* pakai variabel global untuk gradient agar komponen ini lebih kecil */
+  background: var(--login-hero-bg), var(--app-bg);
+}
+
+.container {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Header */
+.logo-box {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  background: var(--ion-color-primary);
+  border-radius: var(--radius-20);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 20px rgba(5, 150, 105, 0.25);
+}
+.emoji { font-size: 40px; }
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1F2937;
+  margin: 0;
+}
+.subtitle {
+  font-size: 16px;
+  color: #6B7280;
+  margin: 8px 0 50px; /* jarak ke kartu */
+}
+
+/* Card */
+.card {
+  text-align: left;
+  background: var(--card-bg);
+  border-radius: var(--radius-24);
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+}
+
+.card-head {
+  text-align: center;
+  margin-bottom: 32px;
+
+  h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1F2937;
+  }
+  p {
+    margin: 0;
+    font-size: 15px;
+    color: #6B7280;
+  }
+}
+
+/* Fields */
+.field { margin-bottom: 20px; }
+
+.form-item {
+  /* hilangkan garis default dan pakai gaya Flutter-like */
+  --inner-padding-top: 0;
+  --inner-padding-bottom: 0;
+  --padding-start: 12px;
+  --padding-end: 12px;
+
+  background: var(--input-bg);            /* #F9FAFB */
+  border: 1px solid var(--input-border);  /* #E5E7EB */
+  border-radius: var(--radius-12);
+  transition: border-color .15s ease, border-width .15s ease;
+}
+
+/* border tebal saat fokus */
+.form-item:focus-within {
+  border-color: var(--input-border-focus); /* #059669 */
+  border-width: 2px;
+}
+
+/* Label dan input */
+ion-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+ion-input {
+  --color: var(--text-primary);           /* #1F2937 */
+  --placeholder-color: var(--text-muted); /* #9CA3AF */
+  font-size: 16px;
+  width: 100%;
+
+  &::part(native) {
+    padding: 12px 4px 14px;   /* mirip contentPadding 16/16 di Flutter */
+  }
+}
+
+/* Buttons */
+.login-button,
+.google-signin-button {
+  --border-radius: var(--radius-12);
+  min-height: 48px;
+  text-transform: none;
+  font-variant-caps: all-small-caps;
+  font-variant: small-caps;
+  letter-spacing: 0.02em;
+}
+
+.login-button {
+  --background: #059669;
+  --background-activated: #047a56;
+  --box-shadow: none;
+  font-weight: 600;
+  margin-top: 4px;
+  color: #fff;
+}
+
+.google-signin-button {
+  --border-color: #E5E7EB;
+  --background: #ffffff;
+  --color: #374151;
+  font-weight: 500;
+}
+
+.divider {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 20px 0 8px; /* 20 setelah tombol utama, 8 sebelum tombol Google */
+}
+
+.google-icon { width: 16px; height: 16px; margin-right: 8px;}
+
+/* Error State Styling */
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  padding: 0 4px;
+  color: #DC2626;
+  font-size: 13px;
+  
+  ion-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  
+  small {
+    line-height: 1.3;
+  }
+}
+
+.form-item.error-border {
+  border-color: #DC2626 !important;
+  border-width: 2px !important;
+  background: #FEF2F2 !important;
+}
+
+.field.has-error ion-label {
+  color: #DC2626 !important;
+}
+
+/* Shake Animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.field.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Button disabled state */
+.login-button:disabled,
+.google-signin-button:disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+ion-spinner {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+/* Responsif kecil */
+@media (max-width: 360px) {
+  .card { padding: 24px; }
+  .title { font-size: 28px; }
+  .subtitle { margin-bottom: 40px; }
+}

@@ -1,0 +1,79 @@
+<ion-content [fullscreen]="true">
+  <div class="login">
+    <div class="container">
+      <div class="logo-box">
+        <span class="emoji">🌶️</span>
+      </div>
+
+      <h1 class="title">Lelang Agro</h1>
+      <p class="subtitle">Platform Lelang Pertanian Terdepan</p>
+
+      <div class="card">
+        <div class="card-head">
+          <h2>Selamat Datang</h2>
+          <p>Masuk dengan akun anda untuk memulai lelang</p>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="loginWithEmail()">
+          <!-- Email Field -->
+          <div class="field" [class.has-error]="form.get('email')?.touched && form.get('email')?.invalid" [class.shake]="showShake && form.get('email')?.invalid">
+            <ion-item class="form-item" [class.error-border]="form.get('email')?.touched && form.get('email')?.invalid" lines="none">
+              <ion-label position="stacked">Email</ion-label>
+              <ion-input
+                type="email"
+                formControlName="email"
+                placeholder="Masukkan email Anda">
+              </ion-input>
+            </ion-item>
+            <div class="error-message" *ngIf="form.get('email')?.touched && form.get('email')?.errors">
+              <ion-icon name="alert-circle-outline"></ion-icon>
+              <small *ngIf="form.get('email')?.errors?.['required']">Email wajib diisi</small>
+              <small *ngIf="form.get('email')?.errors?.['email']">Format email tidak valid</small>
+            </div>
+          </div>
+
+          <!-- Password Field -->
+          <div class="field" [class.has-error]="form.get('password')?.touched && form.get('password')?.invalid" [class.shake]="showShake && form.get('password')?.invalid">
+            <ion-item class="form-item" [class.error-border]="form.get('password')?.touched && form.get('password')?.invalid" lines="none">
+              <ion-label position="stacked">Password</ion-label>
+              <ion-input
+                type="password"
+                formControlName="password"
+                placeholder="Masukkan password Anda">
+              </ion-input>
+            </ion-item>
+            <div class="error-message" *ngIf="form.get('password')?.touched && form.get('password')?.errors">
+              <ion-icon name="alert-circle-outline"></ion-icon>
+              <small *ngIf="form.get('password')?.errors?.['required']">Password wajib diisi</small>
+              <small *ngIf="form.get('password')?.errors?.['minlength']">Password minimal 6 karakter</small>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <ion-button
+            type="submit"
+            expand="block"
+            class="login-button"
+            [disabled]="isSubmitting">
+            <ion-spinner *ngIf="isSubmitting" name="crescent" slot="start"></ion-spinner>
+            <ion-icon *ngIf="!isSubmitting" name="log-in" slot="start"></ion-icon>
+            {{ isSubmitting ? 'Memproses...' : 'Masuk' }}
+          </ion-button>
+        </form>
+
+        <div class="divider">atau</div>
+
+        <ion-button
+          expand="block"
+          fill="outline"
+          class="google-signin-button"
+          [disabled]="isLoading"
+          (click)="loginWithGoogle()">
+          <ion-spinner *ngIf="isLoading" name="crescent" slot="start"></ion-spinner>
+          <img *ngIf="!isLoading" src="assets/google.svg" alt="Google" class="google-icon" slot="start" />
+          {{ isLoading ? 'Memproses...' : 'Masuk/Daftar dengan Google' }}
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

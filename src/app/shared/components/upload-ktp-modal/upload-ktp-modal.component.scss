@@ -1,0 +1,92 @@
+/* ====== container modal (center + transparan) ====== */
+:host,
+ion-content.modal-body {
+  --background: transparent;
+  background: transparent;
+}
+
+.center {
+  min-height: 100%;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ====== card putih ====== */
+.modal-card {
+  width: min(560px, 92vw);
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+}
+
+/* ====== heading ====== */
+.title {
+  margin: 0 0 6px 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--ion-text-color, #111827);
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: rgba(17, 24, 39, 0.7);
+  text-align: center;
+}
+
+/* ====== preview ====== */
+.preview {
+  margin: 8px 0 14px 0;
+
+  img {
+    display: block;
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+}
+
+/* ====== tombol pilih ====== */
+.pick-btn {
+  --border-radius: 16px;
+  --padding-start: 14px;
+  --padding-end: 14px;
+  --border-color: var(--ion-color-primary);
+  --color: var(--ion-color-primary);
+  margin-top: 4px;
+}
+
+/* ====== actions (batal / upload) ====== */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.cancel-btn {
+  --color: var(--ion-color-primary);
+  font-weight: 700;
+}
+
+.upload-btn {
+  --background: var(--ion-color-success);
+  --color: #fff;
+  --border-radius: 9999px;
+  --padding-start: 18px;
+  --padding-end: 18px;
+  --box-shadow: 0 4px 12px rgba(16, 185, 129, 0.32);
+  font-weight: 700;
+
+  &[disabled] {
+    --background: #e9e9ee;
+    --color: #9ca3af;
+    --box-shadow: none;
+  }
+}

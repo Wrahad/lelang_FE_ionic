@@ -1,0 +1,54 @@
+<ion-content class="dialog-content" fullscreen="true">
+  <div class="center">
+    <div class="modal-card">
+      <div class="header">
+        <div class="icon-badge">
+          <ion-icon name="create-outline" color="primary"></ion-icon>
+        </div>
+        <h2 class="title">Edit Profil</h2>
+        <ion-button fill="clear" class="close" (click)="cancel()">
+          <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <form [formGroup]="profileForm" (ngSubmit)="save()" class="form">
+        <ion-item lines="none" class="field">
+          <ion-icon slot="start" name="person-outline" color="medium"></ion-icon>
+          <ion-input
+            formControlName="name"
+            type="text"
+            label="Nama Lengkap"
+            labelPlacement="stacked"
+            placeholder="Masukkan nama lengkap">
+          </ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="field">
+          <ion-icon slot="start" name="call" color="medium"></ion-icon>
+          <ion-input
+            formControlName="telepon_pembeli"
+            type="tel"
+            label="Nomor Telepon"
+            labelPlacement="stacked"
+            placeholder="08xxxxxxxxxx">
+          </ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="field field--textarea">
+          <ion-icon slot="start" name="location-outline" color="medium"></ion-icon>
+          <ion-input
+            formControlName="alamat_pembeli"
+            label="Alamat Lengkap"
+            labelPlacement="stacked"
+            placeholder="Masukkan alamat lengkap">
+          </ion-input>
+        </ion-item>
+
+        <ion-button class="submit" expand="block" type="submit" [disabled]="isSaving">
+          <ion-spinner *ngIf="isSaving" name="crescent"></ion-spinner>
+          <span *ngIf="!isSaving">Simpan Perubahan</span>
+        </ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>

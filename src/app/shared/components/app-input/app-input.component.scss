@@ -1,0 +1,28 @@
+.app-input__label {
+  display: block;
+  font-weight: 600;
+  font-size: 16px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.app-input__control {
+  width: 100%;
+  background: var(--input-bg);           /* #F9FAFB */
+  border: 1px solid var(--input-border); /* #E5E7EB */
+  border-radius: var(--radius-12);       /* 12px */
+  padding: 16px;                         /* horizontal & vertical 16 */
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s ease, border-width 0.15s ease;
+
+  &::placeholder { color: var(--text-muted); } /* #9CA3AF */
+
+  &:focus {
+    border-color: var(--input-border-focus); /* #059669 */
+    border-width: 2px;                       /* tebal saat fokus */
+    box-shadow: none;
+  }
+
+  &:disabled { opacity: .6; cursor: not-allowed; }
+}

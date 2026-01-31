@@ -1,0 +1,9 @@
+<label class="app-input__label">{{ label }}</label>
+<input
+  class="app-input__control"
+  [attr.type]="type"
+  [placeholder]="placeholder"
+  [disabled]="disabled"
+  [value]="value"
+  (input)="onInput($event)"
+/>

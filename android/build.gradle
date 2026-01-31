@@ -1,0 +1,45 @@
+// android/build.gradle  — Project-level Gradle (Ionic/Capacitor) — Opsi A
+
+plugins {
+  id 'com.android.application' version '8.5.1' apply false
+  id 'com.android.library'    version '8.5.1' apply false
+  id 'org.jetbrains.kotlin.android' version '1.9.24' apply false
+  // Google services (versi dideklarasikan di sini, apply di module app)
+  id 'com.google.gms.google-services' version '4.4.2' apply false
+}
+
+// --- Semua statement lain HARUS setelah plugins {} ---
+
+// Variabel SDK (compile/target/min) didefinisikan di sini
+apply from: "variables.gradle"
+
+// Repos untuk seluruh subproject (boleh juga dipindah ke settings.gradle)
+allprojects {
+  repositories {
+    google()
+    mavenCentral()
+  }
+}
+
+// Paksa SEMUA modul pakai Java 17 (hindari "invalid source release: 21")
+subprojects { proj ->
+  afterEvaluate {
+    tasks.withType(JavaCompile).configureEach {
+      sourceCompatibility = JavaVersion.VERSION_17
+      targetCompatibility = JavaVersion.VERSION_17
+    }
+    if (proj.hasProperty('android')) {
+      proj.android {
+        compileOptions {
+          sourceCompatibility JavaVersion.VERSION_17
+          targetCompatibility JavaVersion.VERSION_17
+        }
+      }
+    }
+  }
+}
+
+// Task clean
+tasks.register('clean', Delete) {
+  delete rootProject.buildDir
+}

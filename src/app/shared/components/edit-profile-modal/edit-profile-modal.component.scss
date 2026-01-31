@@ -1,0 +1,82 @@
+/* konten transparan supaya backdrop transparan benar2 terlihat */
+.dialog-content { --background: transparent; }
+
+.center {
+  min-height: 100%;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* kartu putih */
+.modal-card {
+  width: 100%;
+  max-width: 560px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+}
+
+/* kalau tetap ingin putih di dark mode */
+:host-context(.dark) .modal-card {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+/* header */
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px; align-items: center;
+
+  .icon-badge {
+    width: 40px; height: 40px; border-radius: 8px;
+    display: grid; place-items: center;
+    background: rgba(var(--ion-color-primary-rgb), .10);
+  }
+
+  .title { margin: 0; font-size: 20px; font-weight: 700; color: #0f172a; }
+
+  .close {
+    --padding-start: 6px; --padding-end: 6px;
+    --background: #eef2f6; border-radius: 8px;
+  }
+}
+
+/* form */
+.form { display: grid; gap: 16px; margin-top: 24px; }
+
+/* field outline + warna teks & placeholder */
+.field {
+  --background: transparent;
+  --padding-start: 10px;
+  --inner-padding-end: 10px;
+  --highlight-height: 0;
+
+  /* teks & label */
+  --color: #0f172a;
+  --label-color: #0f172a;
+  --label-opacity: 1;
+
+  /* placeholder */
+  --placeholder-color: #64748b;
+  --placeholder-opacity: 1;
+
+  /* border */
+  border-radius: 12px;
+  border: 1px solid rgba(125,125,125,.35);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
+/* fokus hijau */
+.field.ion-focused {
+  border-color: #059669 !important;
+  box-shadow: 0 0 0 2px rgba(5,150,105,.25);
+}
+
+.field--textarea { align-items: start; }
+
+.submit { height: 48px; border-radius: 12px; font-weight: 600; }

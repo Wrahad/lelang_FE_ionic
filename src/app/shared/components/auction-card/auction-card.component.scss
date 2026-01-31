@@ -1,0 +1,139 @@
+/* Agar style hanya berlaku untuk komponen ini */
+:host {
+  display: block;
+}
+
+.auction-card {
+  margin: 0 0 16px 0;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --background: #ffffff;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 8px 16px; 
+}
+
+.auction-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.status-chip {
+  font-size: 0.7rem;
+  height: 24px;
+  font-weight: 500;
+}
+
+.auction-image {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+  margin: 0 auto 16px auto; 
+  display: block;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+/* Bagian Info Kuantitas & Waktu */
+.info-grid {
+  display: flex;
+  gap: 12px; /* Jarak antar box */
+  margin-bottom: 20px;
+}
+
+.info-box {
+  flex: 1; /* Agar kedua box memiliki lebar yang sama */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f7f7f7; /* Warna abu-abu muda seperti di gambar */
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.info-box ion-icon {
+  font-size: 24px;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.info-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.user-bid-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(var(--ion-color-primary-rgb), 0.1); // Latar belakang biru muda
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+
+  ion-icon {
+    font-size: 1.2rem;
+  }
+}
+
+/* Bagian Form Bid */
+.bid-section .section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #333;
+}
+
+.bid-section .section-subtitle {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0 0 12px 0;
+  color: #666;
+}
+
+.bid-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bid-input {
+  flex-grow: 1; /* Input akan mengambil sisa ruang */
+  --background: #f7f7f7;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  border-radius: 10px;
+  height: 48px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.bid-button {
+  --border-radius: 10px;
+  height: 48px;
+  --box-shadow: none;
+  font-weight: 600;
+  --background: var(#168d1c); // Gunakan warna tema success
+}
+
+.error-message {
+  padding-top: 4px;
+  padding-left: 4px;
+}

@@ -1,0 +1,37 @@
+.app-button {
+  /* Primary (solid) */
+  --background: #059669;
+  --background-activated: #047a56;
+  --box-shadow: none;
+  --border-radius: var(--radius-12);
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --color: #ffffff;  /* teks & ikon */
+  color: var(--color); /* pastikan diwariskan ke konten */
+  font-weight: 600;
+  min-height: 48px;
+  font-variant: small-caps;
+
+  ion-spinner {
+    width: 20px;
+    height: 20px;
+    color: currentColor;
+  }
+
+  &.outline {
+    /* Outlined Google button */
+    --background: #ffffff;
+    --color: #374151; /* teks/spinner gelap */
+    color: var(--color);
+    --border-color: #059669;
+    --border-style: solid;
+    --border-width: 1px;
+  }
+}
+
+.loading-text {
+  font-size: 16px;
+  font-weight: 600;
+}

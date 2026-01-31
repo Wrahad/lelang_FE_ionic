@@ -1,2 +1,92 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+:root {
+  /* ... */
+
+  /** primary **/
+  --ion-color-primary: #059669;
+  --ion-color-primary-rgb: 5, 150, 105;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #04845c;
+  --ion-color-primary-tint: #1e9f78;
+
+  /* Atur warna teks dan background default */
+  --ion-background-color: #ffffff;
+  --ion-background-color-rgb: 255, 255, 255;
+
+  --ion-text-color: #111827;
+  --ion-text-color-rgb: 17, 24, 39;
+
+  --ion-color-step-50: #f9fafb;
+  --ion-color-step-100: #f3f4f6;
+  /* ... (bisa ditambahkan sisanya jika perlu) ... */
+
+  /* Atur font-family jika diperlukan */
+  --ion-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Set background untuk konten agar matching */
+  --ion-item-background: #ffffff;
+  --ion-content-background: #ffffff;
+
+  /* Force border-radius untuk semua platform */
+.avatar-button {
+  --padding-start: 6px;
+  --padding-end: 10px;
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+  border-radius: 30px !important; // Force dengan !important
+  height: auto; 
+  margin-inline-end: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  ion-avatar {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important; // Force circle
+    background-image: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; // Pastikan content tidak keluar
+  }
+
+  .initials {
+    font-weight: bold;
+    color: var(--brand-primary);
+    line-height: 1;
+    border-radius: 50% !important; // Force untuk text container juga
+  }
+}
+
+/* Avatar di sidebar juga */
+.user-avatar {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50% !important; // Force circle
+  background-image: linear-gradient(to bottom, var(--brand-primary), var(--brand-primary-shade));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .initials {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-light);
+    line-height: 1;
+  }
+}
+}
+
+.verification-modal {
+  --background: transparent;
+  --box-shadow: none;
+
+  .modal-wrapper {
+    background: transparent;
+  }
+}
+
+
+

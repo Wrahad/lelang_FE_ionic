@@ -1,0 +1,50 @@
+<ion-content class="modal-body" scrollY="false">
+  <div class="center">
+    <div class="modal-card">
+      <h2 class="title">Upload KTP</h2>
+      <p class="subtitle">Pilih foto KTP yang jelas untuk proses verifikasi</p>
+
+      <!-- Preview -->
+      <div *ngIf="previewUrl" class="preview">
+        <img [src]="previewUrl" alt="Preview KTP" />
+      </div>
+
+      <!-- Hidden file input -->
+      <input
+        #fileInput
+        type="file"
+        accept="image/*"
+        capture="environment"
+        (change)="onFileChange($any($event.target).files?.[0])"
+        hidden
+      />
+
+      <!-- Pick image -->
+      <ion-button
+        expand="block"
+        fill="outline"
+        class="pick-btn"
+        (click)="pickImage()"
+      >
+        <ion-icon slot="start" name="image-outline"></ion-icon>
+        Pilih Gambar KTP
+      </ion-button>
+
+      <!-- Actions -->
+      <div class="actions">
+        <ion-button fill="clear" class="cancel-btn" (click)="closeModal()">
+          Batal
+        </ion-button>
+
+        <ion-button
+          class="upload-btn"
+          [disabled]="!pickedFile || isUploading"
+          (click)="uploadKtpOnly()"
+        >
+          <ion-spinner *ngIf="isUploading" name="lines" slot="start"></ion-spinner>
+          Upload
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

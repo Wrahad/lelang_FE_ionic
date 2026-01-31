@@ -1,0 +1,165 @@
+/* Memberi warna latar belakang pada seluruh halaman */
+:host {
+  ion-content {
+    --background: #f4f5f8; // Warna abu-abu muda yang lembut
+  }
+}
+
+/* ================================= */
+/* Styling untuk Dashboard Banner */
+/* ================================= */
+/* src/app/pages/auctions/list/auction-list.page.scss */
+
+/* Styling untuk Dashboard Banner (Desain Baru) */
+.dashboard-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  // Ganti latar belakang menjadi putih
+  background: #ffffff; 
+  padding: 16px;
+  border-radius: 16px;
+  margin-top: calc(var(--ion-safe-area-top) + 40px);
+  margin-bottom: 24px;
+  // Tambahkan border tipis untuk memisahkan
+  border: 1px solid #e9e9e9; 
+}
+
+.dashboard-icon-wrapper {
+  // Ganti latar belakang menjadi warna tema yang lebih lembut
+  background-color: rgba(var(--ion-color-primary-rgb), 0.1); 
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-icon {
+  font-size: 28px;
+  // Ganti warna ikon menjadi warna tema utama
+  color: var(--ion-color-primary); 
+}
+
+.dashboard-text {
+  flex-grow: 1;
+  h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    // Ganti warna teks menjadi lebih gelap
+    color: #333; 
+  }
+  p {
+    margin: 0;
+    font-size: 0.8rem;
+    // Ganti warna subtitle
+    color: #777; 
+  }
+}
+
+.dashboard-chip {
+  // Ganti style chip agar lebih kontras di latar putih
+  --background: #f0f0f0; 
+  color: #555;
+  font-weight: 500;
+
+  ion-icon {
+    color: var(--ion-color-success);
+  }
+}
+
+
+/* ================================= */
+/* Styling untuk Kontainer Daftar Lelang */
+/* ================================= */
+.list-container {
+  background: transparent; // Hapus background jika ingin menyatu
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding: 0 4px; // Sedikit padding agar sejajar dengan kartu
+}
+
+.list-title {
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+  }
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #777;
+  }
+}
+
+.refresh-button {
+  --color: var(--ion-color-primary);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+/* src/app/pages/auctions/list/auction-list.page.scss */
+
+// ... (kode styling lainnya yang sudah ada)
+
+/* ================================= */
+/* Styling untuk Empty State         */
+/* ================================= */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  margin-top: 16px;
+  border: 1px solid #e9e9e9;
+}
+
+.empty-state-icon-wrapper {
+  background-color: #f4f5f8;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.empty-state-icon {
+  font-size: 48px;
+  color: #c0c0c0;
+}
+
+.empty-state h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.empty-state p {
+  font-size: 0.9rem;
+  color: #888;
+  max-width: 250px;
+  margin: 0 auto 24px auto;
+  line-height: 1.5;
+}
+
+.empty-state ion-button {
+  --border-color: var(--ion-color-primary);
+  --color: var(--ion-color-primary);
+  font-weight: 600;
+}
+

@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Riwayat Anda</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="isLoading" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <div *ngIf="!isLoading" class="ion-padding">  
+
+    <div class="intro-card">
+      <div class="intro-icon">
+        <ion-icon name="time-outline"></ion-icon>
+      </div>
+      <div class="intro-text">
+        <h2>Riwayat Penawaran</h2>
+        <p>Lihat semua aktivitas lelang Anda</p>
+      </div>
+    </div>
+
+    <div class="summary-grid" *ngIf="summary && isVerified">
+      <div class="summary-card">
+        <ion-icon name="create-outline" color="primary"></ion-icon>
+        <h3>{{ summary.total_lelang_diikuti }}</h3>
+        <p class="title">Total Penawaran</p>
+        <p class="subtitle">penawaran dibuat</p>
+      </div>
+      <div class="summary-card">
+        <ion-icon name="trophy-outline" color="success"></ion-icon>
+        <h3>{{ summary.total_menang }}</h3>
+        <p class="title">Menang</p>
+        <p class="subtitle">lelang dimenangkan</p>
+      </div>
+      <div class="summary-card">
+        <ion-icon name="trending-down-outline" color="danger"></ion-icon>
+        <h3>{{ summary.total_kalah }}</h3>
+        <p class="title">Kalah</p>
+        <p class="subtitle">penawaran tidak berhasil</p>
+      </div>
+    </div>
+
+    <div class="activity-header">
+      <div class="activity-title">
+        <h2>Aktivitas Terbaru</h2>
+        <p>Riwayat penawaran lelang Anda</p>
+      </div>
+      <ion-button shape="circle" fill="outline" class="refresh-button" (click)="handleRefresh(null)">
+        <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div *ngIf="isVerified && historyItems.length === 0" class="empty-state ion-padding">
+      <ion-icon name="archive-outline"></ion-icon>
+      <p>Anda belum memiliki riwayat lelang.</p>
+    </div>
+
+    <div *ngIf="!isVerified" class="empty-state ion-padding">
+      <ion-icon name="archive-outline"></ion-icon>
+      <h3>Akun Belum Terverifikasi</h3>
+      <p>Anda harus memverifikasi akun untuk melihat riwayat.</p>
+      <ion-button fill="outline" shape="round" (click)="goToProfile()">
+        Ke Halaman Profil
+      </ion-button>
+    </div>
+
+    <div class="history-list" *ngIf="isVerified">
+      <div 
+        *ngFor="let item of historyItems" 
+        class="history-card" 
+        [class.win]="item.status === 'Menang'" 
+        [class.lose]="item.status === 'Kalah'">
+        <div class="card-main-content">
+          <h3>{{ item.lelang.nama_lelang }}</h3>
+          <p class="subtitle">{{ item.lelang.produk.nama_produk}}</p>
+          <ion-chip class="winner-chip">
+            <ion-icon name="pricetag"></ion-icon>
+            <ion-label>Pemenang: {{ item.harga_pemenang | currency:'IDR':'Rp ':'1.0-0' }}</ion-label>
+          </ion-chip>
+        </div>
+        <div class="card-side-content">
+          <p class="user-bid">{{ item.harga_penawaran | currency:'IDR':'Rp ':'1.0-0' }}</p>
+          <ion-chip [color]="item.status === 'Menang' ? 'success' : 'danger'" class="status-chip">
+            <ion-icon [name]="item.status === 'Menang' ? 'trophy' : 'close-circle'"></ion-icon>
+            <ion-label>{{ item.status }}</ion-label>
+          </ion-chip>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

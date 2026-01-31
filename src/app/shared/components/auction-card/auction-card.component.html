@@ -1,0 +1,136 @@
+<!-- <ion-card class="auction-card">
+  <ion-card-header class="card-header">
+    <ion-card-title class="auction-title">{{ auction.product_name }}</ion-card-title>
+    <ion-chip class="status-chip" color="success" *ngIf="auction.can_bid">
+      <ion-label>AKTIF</ion-label>
+    </ion-chip>
+    <ion-chip class="status-chip" color="medium" *ngIf="!auction.can_bid">
+      <ion-label>BERAKHIR</ion-label>
+    </ion-chip>
+  </ion-card-header>
+
+  <img class="auction-image" [src]="auction.images && auction.images.length > 0 ? auction.images[0] : 'assets/placeholder.png'" [alt]="auction.product_name" />
+
+  <ion-card-content class="card-content">
+    <div class="info-grid">
+      <div class="info-box">
+        <ion-icon name="scale-outline" color="medium"></ion-icon>
+        <div class="info-text">
+          <span class="info-label">Kuantitas</span>
+          <span class="info-value">{{ auction.total_stock }} kg</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <ion-icon name="time-outline" color="medium"></ion-icon>
+        <div class="info-text">
+          <span class="info-label">Berakhir</span>
+          <span class="info-value">{{ auction.ends_at | date:'HH:mm' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="userBid" class="user-bid-info">
+      <ion-icon name="checkmark-circle" color="primary"></ion-icon>
+      <ion-text color="primary">
+        Tawaran Anda: <strong>{{ userBid.harga_penawaran | currency:'IDR':'Rp ':'1.0-0' }}</strong>
+      </ion-text>
+    </div>
+
+    <div class="bid-section">
+      <p class="section-title">Ajukan Penawaran Baru</p>
+      <p class="section-subtitle">Tawaran Anda akan menggantikan tawaran sebelumnya.</p>
+      
+      <div class="bid-form">
+        <ion-input
+          class="bid-input"
+          type="number"
+          placeholder="Masukkan nominal bid"
+          [(ngModel)]="bidAmount"
+          (click)="$event.stopPropagation()" 
+          [disabled]="!canUserBid || !auction.can_bid || isSubmitting">
+        </ion-input>
+        <ion-button 
+          class="bid-button" 
+          (click)="submitBid(); $event.stopPropagation();" 
+          [disabled]="!auction.can_bid || isSubmitting">
+          <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
+          <span *ngIf="!isSubmitting">Tawar</span>
+        </ion-button>
+      </div>
+      
+      <div *ngIf="errorMessage" class="error-message">
+        <ion-text color="danger"><small>{{ errorMessage }}</small></ion-text>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card> -->
+
+<div class="auction-card" (click)="onCardClick()">
+  
+  <div class="card-header">
+    <h3 class="auction-title">{{ auction.product_name }}</h3>
+    <div class="header-right">
+      <ion-chip class="status-chip" color="success" mode="ios" *ngIf="auction.can_bid">
+        <ion-label>AKTIF</ion-label>
+      </ion-chip>
+      <ion-chip class="status-chip" color="medium" mode="ios" *ngIf="!auction.can_bid">
+        <ion-label>BERAKHIR</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+  <img class="auction-image" [src]="auction.images && auction.images.length > 0 ? auction.images[0] : 'assets/placeholder.png'" [alt]="auction.product_name" />
+  <div class="card-content">
+    <div class="info-grid">
+      <div class="info-box">
+        <ion-icon name="scale-outline" color="medium" mode="ios"></ion-icon>
+        <div class="info-text">
+          <span class="info-label">Kuantitas</span>
+          <span class="info-value">{{ auction.total_stock }} kg</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <ion-icon name="time-outline" color="medium" mode="ios"></ion-icon>
+        <div class="info-text">
+          <span class="info-label">Berakhir</span>
+          <span class="info-value">{{ auction.ends_at | date:'HH:mm' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="userBid || auction.user_latest_bid" class="user-bid-info">
+      <ion-icon name="checkmark-circle" color="primary" mode="ios"></ion-icon>
+      <ion-text color="primary" mode="ios">
+        Tawaran Anda: <strong>{{ (userBid?.harga_penawaran || auction.user_latest_bid) | currency:'IDR':'Rp ':'1.0-0' }}</strong>
+      </ion-text>
+    </div>
+
+    <div class="bid-section">
+      <p class="section-title">Ajukan Penawaran Baru</p>
+      <p class="section-subtitle">Tawaran Anda akan menggantikan tawaran sebelumnya.</p>
+      
+      <div class="bid-form">
+        <ion-input
+          class="bid-input"
+          type="number"
+          placeholder="Masukkan nominal bid"
+          [(ngModel)]="bidAmount"
+          (click)="$event.stopPropagation()" 
+          [disabled]="!canUserBid || !auction.can_bid || isSubmitting"
+          mode="ios">
+        </ion-input>
+        <ion-button 
+          class="bid-button" 
+          (click)="submitBid(); $event.stopPropagation();" 
+          [disabled]="!auction.can_bid || isSubmitting"
+          mode="ios">
+          <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
+          <span *ngIf="!isSubmitting">Tawar</span>
+        </ion-button>
+      </div>
+      
+      <div *ngIf="errorMessage" class="error-message">
+        <ion-text color="danger"><small>{{ errorMessage }}</small></ion-text>
+      </div>
+    </div>
+  </div>
+</div>

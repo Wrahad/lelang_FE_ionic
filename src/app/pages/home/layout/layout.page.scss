@@ -1,0 +1,582 @@
+:host {
+  /* Variabel dari file Anda */
+  --brand-primary: #059669;
+  --brand-primary-shade: #047857;
+  --brand-primary-dark: #065f46;
+  --text-light: #ffffff;
+  --text-dark: #333333;
+
+  /* Variabel dari file saya */
+  --sidebar-width: 280px; // Sedikit lebih lebar untuk desain Anda
+  --header-height: 70px; // Sesuai toolbar Anda
+  --sidebar-bg: linear-gradient(to bottom, white, #f9fafb); // Sesuai menu Anda
+  --sidebar-border: #e5e7eb;
+}
+
+.main-layout-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* 1. Sidebar (nav) */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease-in-out;
+  z-index: 1001; 
+  flex-shrink: 0;
+  
+  // Ini adalah elemen <ion-content> di dalam sidebar
+  ion-content {
+    --background: transparent;
+  }
+}
+
+/* 2. Konten Utama */
+.main-content {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; 
+}
+
+/* 3. Aturan Responsif (Mobile) */
+.sidebar-overlay {
+  display: none; // Sembunyikan di desktop
+}
+
+@media (max-width: 991px) { 
+  .sidebar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin-left: calc(-1 * var(--sidebar-width)); // Sembunyikan
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  }
+
+  .sidebar.open {
+    margin-left: 0; // Tampilkan
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000; 
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .sidebar-overlay.visible {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* ====================== TOOLBAR ======================= */
+/* ====================== TOOLBAR ======================= */
+.app-toolbar {
+  --min-height: 60px;
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: transparent;
+  background-image: linear-gradient(to right, var(--brand-primary), var(--brand-primary-shade), var(--brand-primary-dark));
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: var(--text-light);
+  
+  /* ✅ Fix flexbox layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  ion-buttons {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    
+    &[slot="start"] {
+      flex: 1;
+      justify-content: flex-start;
+      padding-left: 8px;
+    }
+    
+    &[slot="end"] {
+      padding-right: 8px;
+    }
+  }
+}
+
+.menu-button-styled {
+  --color: var(--text-light);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* ✅ Fix nav-title-group positioning */
+.nav-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 12px;
+  flex: 1;
+  min-width: 0; /* Important for text truncation */
+}
+
+.title-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  ion-icon {
+    font-size: 20px;
+    color: var(--text-light);
+  }
+}
+
+.title-text-wrapper {
+  flex: 1;
+  min-width: 0;
+  
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-light);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  p {
+    margin: 2px 0 0 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.avatar-button {
+  --color: white;
+  --background: rgba(255, 255, 255, 0.15);
+  --border-radius: 20px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  height: 40px;
+  margin: 0;
+  flex-shrink: 0;
+  
+  ion-avatar {
+    width: 28px;
+    height: 28px;
+    margin-right: 6px;
+    
+    .initials {
+      background: white;
+      color: var(--brand-primary, #059669);
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 12px;
+    }
+  }
+  
+  ion-icon {
+    font-size: 14px;
+    margin-left: 4px;
+  }
+}
+
+/* ====================== POPOVER ======================= */
+.avatar-popover {
+  --width: 300px;
+  --box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  --border-radius: 20px;
+  --background: #ffffff; 
+}
+
+/* Styling popover Anda */
+/* ✅ Popover styling berdasarkan dokumentasi */
+ion-popover {
+  --width: 280px;
+  --max-height: 300px;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ Popover content styling */
+.popover-item-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 0;
+}
+
+.popover-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  &.green { 
+    background-color: #d1fae5; 
+    color: #047857; 
+  }
+  &.orange { 
+    background-color: #fed7aa; 
+    color: #ea580c; 
+  }
+  &.red { 
+    background-color: #fecaca; 
+    color: #dc2626; 
+  }
+  
+  ion-icon {
+    font-size: 18px;
+  }
+}
+
+.popover-text {
+  flex: 1;
+  
+  .popover-title {
+    font-weight: 500;
+    color: #1f2937;
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .popover-subtitle {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 2px 0 0 0;
+  }
+}
+
+/* ✅ Ion-item di dalam popover */
+ion-popover ion-item {
+  --background: transparent;
+  --border-width: 0;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --inner-padding-end: 0;
+  margin: 4px 0;
+  border-radius: 8px;
+  
+  &:hover {
+    --background: #f9fafb;
+  }
+  
+  &:active {
+    --background: #f0f0f0;
+  }
+  
+  &[color="danger"]:hover {
+    --background: #fef2f2;
+  }
+}
+
+/* ✅ Existing avatar button styling */
+.avatar-button {
+  --color: white;
+  --background: rgba(255, 255, 255, 0.15);
+  --border-radius: 20px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  height: 40px;
+  margin-right: 8px;
+  
+  ion-avatar {
+    width: 28px;
+    height: 28px;
+    margin-right: 6px;
+    
+    .initials {
+      background: white;
+      color: var(--brand-primary, #059669);
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 12px;
+    }
+  }
+  
+  ion-icon {
+    font-size: 14px;
+    margin-left: 4px;
+  }
+}
+
+/* ================== BODY & TRANSITION ================= */
+.page-content {
+  --background: linear-gradient(to bottom, #f9fafb, #ffffff);
+}
+.page-transition {
+  animation: fadeInSlide 0.4s ease-out both;
+}
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* =================== DRAWER (MENU) ==================== */
+.drawer-header {
+  padding: 16px;
+  padding-top: var(--ion-safe-area-top);
+  background-image: linear-gradient(to right, var(--brand-primary), var(--brand-primary-shade), var(--brand-primary-dark));
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  color: var(--text-light);
+  .drawer-header-content {
+    padding: 16px;
+    position: relative;
+    .close-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: var(--text-light);
+      background: rgba(255,255,255,0.2);
+    }
+    .app-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--text-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: var(--brand-primary);
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+    }
+    .app-title {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1.2px;
+      margin: 0;
+    }
+    .app-tagline {
+      margin-top: 8px;
+      span {
+        background: rgba(255,255,255,0.2);
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.drawer-user-card {
+  margin: 20px;
+  padding: 20px;
+  background: var(--text-light);
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  .user-avatar {
+    width: 56px;
+    height: 56px;
+    background-image: linear-gradient(to bottom, var(--brand-primary), var(--brand-primary-shade));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .initials {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--text-light);
+      line-height: 1;
+    }
+  }
+
+  .user-info {
+    .user-name { font-weight: bold; font-size: 16px; color: var(--text-dark); }
+    .user-email { font-size: 13px; color: #666; margin: 4px 0 8px; }
+    .status-badge {
+      background: rgba(5, 150, 105, 0.1);
+      color: var(--brand-primary);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+  }
+}
+
+.menu-section-title {
+  padding-left: 24px;
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.drawer-list {
+  padding: 0 16px;
+  --background: transparent !important;
+
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    --background: var(--text-light);
+    border-radius: 15px;
+    margin: 8px 0;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    
+    .item-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      padding: 16px;
+    }
+    .item-icon-wrapper {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      &.blue { background-color: #e0f2fe; color: #0284c7; }
+      &.orange { background-color: #fff7ed; color: #f97316; }
+      &.green { background-color: #f0fdf4; color: #16a34a; }
+      &.red { background-color: #fef2f2; color: #dc2626; }
+    }
+    .item-label-wrapper {
+      flex: 1;
+      ion-label { font-weight: 600; font-size: 15px; color: var(--text-dark); }
+      p { font-size: 12px; color: #666; margin: 2px 0 0; }
+    }
+  }
+
+  /* Active State */
+  ion-item.active-item {
+    background-image: linear-gradient(to right, var(--brand-primary), var(--brand-primary-shade));
+    box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
+    color: var(--text-light);
+    
+    ion-label, p, .forward-icon {
+      color: var(--text-light);
+    }
+    .item-icon-wrapper {
+      background: rgba(255,255,255,0.2);
+    }
+  }
+
+  .logout-item {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    ion-label { color: #991b1b; }
+    p { color: #b91c1c; }
+  }
+}
+
+.drawer-list.list-ios,
+.drawer-list.list-md {
+  background: transparent !important;
+}
+
+/* Styling untuk Dialog/Alert */
+.help-dialog-modal {
+  --background: rgba(0, 0, 0, 0.4);
+  --border-radius: 24px;
+  --width: 100%;
+  --height: 100%;
+  
+  .modal-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Update avatar button styling */
+.avatar-button {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+  border-radius: 30px !important;
+  height: auto;
+  margin-inline-end: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  ion-avatar {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    background-image: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-right: 6px;
+  }
+
+  .initials {
+    font-weight: bold;
+    color: var(--brand-primary);
+    line-height: 1;
+    font-size: 12px;
+  }
+
+  ion-icon {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+}

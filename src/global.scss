@@ -24,6 +24,8 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+@import './theme/variables.scss';
+
 
 /**
  * Ionic Dark Mode
@@ -34,4 +36,176 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+// @import '@ionic/angular/css/palettes/dark.system.css';
+:root { color-scheme: light; 
+--ion-color-primary: #059669;
+  --app-bg: #E8F5F0;
+  --card-bg: #ffffff;
+  --input-bg: #F9FAFB;
+  --input-border: #E5E7EB;
+  --input-border-focus: #059669;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --radius-12: 12px;
+  --radius-24: 24px;}
+
+html, body {
+  background: var(--app-bg);
+  color: var(--text-primary);
+}
+
+ion-content {
+  --background: var(--app-bg);
+}
+
+/* Modal Edit Profil: bikin backdrop & kontainer transparan */
+ion-modal.edit-profile-modal::part(backdrop) {
+  background: transparent;
+  opacity: 0; /* tak terlihat tapi masih menangkap klik di luar */
+}
+
+ion-modal.edit-profile-modal::part(content) {
+  --background: transparent;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+
+  /* (Opsional) pusatkan modal ala dialog */
+  width: min(560px, 92vw);
+  max-height: 85vh;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0;
+}
+
+ion-modal.upload-ktp-modal::part(backdrop) {
+  background: transparent;
+  opacity: 0;
+}
+
+/* Kontainer modal ditaruh di tengah seperti dialog */
+ion-modal.upload-ktp-modal::part(content) {
+  --background: transparent;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+  /* center */
+  width: min(560px, 92vw);
+  max-height: 85vh;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0;
+}
+
+/* =========================================
+   CUSTOM ALERT STYLING
+   ========================================= */
+
+.custom-alert-logout {
+  /* 1. Backdrop (Latar belakang gelap) */
+  --backdrop-opacity: 0.6;
+
+  /* 2. Container Alert (Kotak Putih) */
+  .alert-wrapper {
+    border-radius: 24px !important; /* Radius tumpul modern */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Bayangan halus */
+    padding: 8px; /* Memberi ruang di dalam */
+    background: #ffffff;
+    max-width: 320px !important;
+  }
+
+  /* 3. Header (Judul) */
+  .alert-head {
+    padding-top: 24px;
+    padding-bottom: 8px;
+    
+    h2.alert-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1f2937; /* Warna gelap tegas */
+      text-align: center;
+    }
+  }
+
+  /* 4. Message (Isi Pesan) */
+  .alert-message {
+    text-align: center;
+    color: #6b7280; /* Abu-abu lembut */
+    font-size: 15px;
+    line-height: 1.5;
+    padding-bottom: 24px;
+  }
+
+  /* 5. Group Tombol */
+  .alert-button-group {
+    padding: 0 16px 16px 16px;
+    display: flex;
+    gap: 12px; /* Jarak antar tombol */
+    justify-content: center; /* Tombol di tengah */
+  }
+
+  /* Base Style untuk Semua Tombol */
+  button.alert-button {
+    height: 44px;
+    border-radius: 12px !important;
+    text-transform: none; /* Huruf besar-kecil biasa */
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0 !important;
+    flex: 1; /* Agar lebar tombol sama rata (50:50) */
+  }
+
+  /* === STYLING TOMBOL SPESIFIK === */
+
+  /* Tombol Batal (Abu-abu soft) */
+  .alert-btn-cancel {
+    color: #4b5563 !important;
+    background-color: #f3f4f6 !important; /* Abu-abu muda */
+    
+    .alert-button-inner {
+      justify-content: center;
+    }
+  }
+
+  /* Tombol Logout (Merah soft / Danger) */
+  .alert-btn-danger {
+    color: #dc2626 !important; /* Teks Merah */
+    background-color: #fef2f2 !important; /* Latar Merah Sangat Muda */
+    border: 1px solid #fee2e2;
+    
+    .alert-button-inner {
+      justify-content: center;
+    }
+
+    /* Efek saat ditekan */
+    &.ion-activated {
+      background-color: #fee2e2 !important;
+    }
+  }
+}
+/* src/global.scss */
+
+/* Class Generic untuk Modal Kecil (Logout, Help, dll) */
+.dialog-modal {
+  --height: auto;
+  --width: 90%;
+  --max-width: 380px; 
+  --border-radius: 24px; /* Radius ngikutin komponen */
+  --backdrop-opacity: 0.5;
+
+  /* Centering */
+  align-items: center;
+  justify-content: center;
+
+  .ion-page {
+    position: relative;
+    display: block;
+    contain: content;
+    height: auto;
+    min-height: 0;
+    background: transparent; 
+  }
+}
+
+

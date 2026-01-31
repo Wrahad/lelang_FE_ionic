@@ -1,0 +1,56 @@
+<ion-content class="ion-padding-top">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="ion-padding">
+    <div class="dashboard-banner">
+      <div class="dashboard-icon-wrapper">
+        <ion-icon name="analytics-outline" class="dashboard-icon"></ion-icon>
+      </div>
+      <div class="dashboard-text">
+        <h3>Dashboard Lelang</h3>
+        <p>Pantau lelang secara real-time</p>
+      </div>
+      <ion-chip color="light" mode="ios" class="dashboard-chip">
+        <ion-icon name="person-circle" color="success"></ion-icon>
+        <ion-label>Pembeli</ion-label>
+      </ion-chip>
+    </div>
+    <div class="list-container">
+      <div class="list-header">
+        <div class="list-title">
+          <h3>Daftar Lelang Aktif</h3>
+          <p>Total lelang aktif: {{ auctions.length }}</p>
+        </div>
+        <ion-button fill="outline" size="small" class="refresh-button" (click)="handleRefresh(null)">
+          <ion-icon slot="start" name="refresh-outline"></ion-icon>
+          Refresh
+        </ion-button>
+      </div>
+      <div *ngIf="isLoading" class="ion-text-center ion-padding">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+      <div *ngIf="!isLoading && auctions.length === 0" class="empty-state">
+        <div class="empty-state-icon-wrapper">
+          <ion-icon name="image-outline" class="empty-state-icon"></ion-icon>
+        </div>
+        <h2>Belum Ada Lelang Aktif</h2>
+        <p>Saat ini tidak ada lelang berlangsung. Silakan cek kembali nanti!</p>
+        <ion-button fill="outline" shape="round" (click)="handleRefresh(null)">
+          <ion-icon slot="start" name="refresh-outline"></ion-icon>
+          Coba Lagi
+        </ion-button>
+      </div>     
+      <div *ngIf="!isLoading && auctions.length > 0">
+        <app-auction-card
+          *ngFor="let auction of auctions; trackBy: trackByAuctionId"
+          [auction]="auction"
+          [isSubmitting]="isSubmittingBid(auction.id)"
+          [canUserBid]="authService.canBid"
+          (bidSubmitted)="onBidSubmitted($event)"
+          (auctionClick)="onAuctionClick(auction)">
+        </app-auction-card>
+      </div>
+    </div>
+  </div>
+</ion-content>
