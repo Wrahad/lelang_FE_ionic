@@ -70,3 +70,8 @@ testem.log
 Thumbs.db
 android/app/my-release-key.keystore
 android/key.properties
+
+# Hasil Pengujian (Test Results)
+/scenario_logs
+*.csv
+*.log
